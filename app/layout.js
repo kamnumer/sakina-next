@@ -1,17 +1,28 @@
+import { Fraunces, Inter, Amiri } from 'next/font/google'
 import './globals.css'
 
+const display = Fraunces({ subsets: ['latin'], variable: '--font-display', display: 'swap' })
+const sans = Inter({ subsets: ['latin'], variable: '--font-sans', display: 'swap' })
+const arabic = Amiri({ subsets: ['arabic'], weight: ['400', '700'], variable: '--font-arabic', display: 'swap' })
+
 export const metadata = {
-  title: 'Neuro Reset Console',
-  description: 'Calming frequency, breathing and surah routine.',
+  title: 'Sakina · Neuro Reset Console',
+  description: 'A calming routine of breath, gentle frequency and Quran, matched to what you need right now.',
 }
-export const viewport = { width: 'device-width', initialScale: 1, viewportFit: 'cover' }
+
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  viewportFit: 'cover',
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#f4efe4' },
+    { media: '(prefers-color-scheme: dark)', color: '#0b1226' },
+  ],
+}
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <head>
-        <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet" />
-      </head>
+    <html lang="en" className={`${display.variable} ${sans.variable} ${arabic.variable}`}>
       <body>{children}</body>
     </html>
   )
